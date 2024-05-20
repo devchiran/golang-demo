@@ -4,6 +4,7 @@ import (
 	"context"
 	"database/sql"
 	cl "golang-demo/pkg/catelog"
+	"strings"
 
 	sq "github.com/Masterminds/squirrel"
 
@@ -93,4 +94,33 @@ func buildGetAlbumQuery(id string) (QueryValues, error) {
 		ToSql()
 
 	return QueryValues{q, args}, errors.Wrap(err, "get album build query into SQL string")
+}
+
+func (p *Postgres) CreateAlbum(ctx context.Context, req cl.CreateAlbumRequest) (cl.CreateAlbumResponse, error) {
+	var res cl.CreateAlbumResponse
+
+	var r cl.Album
+	qv, err := buildCreateAlbumQuery(req)
+	if err != nil {
+		return res, errors.Wrap(err, "build Album insert query")
+	}
+	err = p.sqldb.GetContext(ctx, &r, qv.query, qv.args...)
+	if err != nil {
+		return res, errors.Wrap(err, "execute Album insert query")
+	}
+
+	res = cl.CreateAlbumResponse{
+		Album: &r,
+	}
+	return res, nil
+}
+
+func buildCreateAlbumQuery(req cl.CreateAlbumRequest) (QueryValues, error) {
+	q, args, err := psql.Insert(tableAlbums).
+		Columns(albumsColumnID, albumsColumnTitle, albumsColumnCreatedAt, albumsColumnUpdatedAt).
+		Values(req.AlbumID, req.Title, "now()", "NULL").
+		Suffix("RETURNING " + strings.Join(albumsColumns, " , ")).
+		ToSql()
+
+	return QueryValues{q, args}, errors.Wrap(err, "create album build query into SQL string")
 }

@@ -20,3 +20,12 @@ type GetAlbumRes struct {
 type GetAlbumReq struct {
 	AlbumID string `json:"album_id"`
 }
+
+type CreateAlbumRequest struct {
+	AlbumID string `json:"id"`
+	Title   string `json:"title"`
+}
+
+type CreateAlbumResponse struct {
+	Album *Album `json:"album"`
+}

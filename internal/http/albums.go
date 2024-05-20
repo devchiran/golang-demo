@@ -5,6 +5,7 @@ import (
 	cl "golang-demo/pkg/catelog"
 	"net/http"
 
+	"github.com/ryanfowler/uuid"
 	httputils "github.com/twitsprout/tools/http"
 	"github.com/twitsprout/tools/requestid"
 )
@@ -85,6 +86,56 @@ func parseGetAlbumRequest(r *http.Request) (cl.GetAlbumReq, error) {
 
 	req = cl.GetAlbumReq{
 		AlbumID: albumID,
+	}
+	return req, nil
+}
+
+// CreateAlbum creates a album with the requested title
+func (h *Handler) CreateAlbum(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+	v := r.URL.Query()
+	reqID := requestid.Get(ctx)
+
+	req, err := parseCreateAlbumRequest(r)
+	if err != nil {
+		h.Logger.Error("[CreateReview] error parsing request",
+			"request_id", reqID,
+			"details", err.Error())
+		_ = httputils.WriteJSONError(w, v, err.Error(), http.StatusBadRequest)
+		return
+	}
+
+	res, err := h.AlbumStore.CreateAlbum(ctx, req)
+	if err != nil {
+		h.Logger.Error("[CreateReview] error storing review",
+			"request_id", reqID,
+			"details", err.Error(),
+		)
+		_ = httputils.WriteJSONError(w, v, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	_ = httputils.WriteJSON(w, v, res, http.StatusCreated)
+}
+
+func parseCreateAlbumRequest(r *http.Request) (cl.CreateAlbumRequest, error) {
+	var req cl.CreateAlbumRequest
+	v := r.URL.Query()
+
+	// Generate album id to add to database
+	albumID, err := uuid.NewV4()
+	if err != nil {
+		return req, errors.New("[parseGetAlbumRequest] album id must be provided")
+	}
+
+	albumTitle := v.Get("title")
+	if albumTitle == "" || albumTitle == " " {
+		return req, errors.New("[parseGetAlbumRequest] album id must be provided")
+	}
+
+	req = cl.CreateAlbumRequest{
+		AlbumID: albumID.String(),
+		Title:   albumTitle,
 	}
 	return req, nil
 }

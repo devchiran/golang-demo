@@ -32,6 +32,7 @@ func (h *Handler) Handler() http.Handler {
 
 	v1.Methods("GET").Path("/albums").Name("list_albums").HandlerFunc(h.ListAlbums)
 	v1.Methods("GET").Path("/album/{id}").Name("get_album").HandlerFunc(h.GetAlbum)
+	v1.Methods("POST").Path("/album").Name("create_album").HandlerFunc(h.CreateAlbum)
 	h.router = r
 	return r
 }
