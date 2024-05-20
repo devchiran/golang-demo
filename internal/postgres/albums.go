@@ -2,6 +2,7 @@ package postgres
 
 import (
 	"context"
+	"database/sql"
 	cl "golang-demo/pkg/catelog"
 
 	sq "github.com/Masterminds/squirrel"
@@ -61,12 +62,15 @@ func buildListAlbumsQuery() (QueryValues, error) {
 	return QueryValues{q, args}, errors.Wrap(err, "list albums build query into SQL string")
 }
 
-func (p *Postgres) GetAlbum(ctx context.Context, id string) (cl.ListAlbumsRes, error) {
+func (p *Postgres) GetAlbum(ctx context.Context, id string) (cl.GetAlbumRes, error) {
 
-	var res cl.ListAlbumsRes
+	var res cl.GetAlbumRes
 
-	var r []cl.Album
+	var r cl.Album
 	qv, err := buildGetAlbumQuery(id)
+	if err == sql.ErrNoRows {
+		return res, cl.ErrNotFound
+	}
 	if err != nil {
 		return res, errors.Wrap(err, "build get album query")
 	}
@@ -75,16 +79,10 @@ func (p *Postgres) GetAlbum(ctx context.Context, id string) (cl.ListAlbumsRes, e
 		return res, errors.Wrap(err, "execute get album query")
 	}
 
-	// If not rows are found, return a 404.
-	if len(r) == 0 {
-		return res, cl.ErrNotFound
-	}
-
 	res = cl.GetAlbumRes{
 		Album: r,
 	}
 	return res, nil
-
 }
 
 func buildGetAlbumQuery(id string) (QueryValues, error) {
