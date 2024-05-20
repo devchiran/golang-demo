@@ -30,7 +30,8 @@ func (h *Handler) Handler() http.Handler {
 
 	v1 := r.PathPrefix("/v1").Subrouter()
 
-	// v1.Methods("GET").Path("/challenges").Name("list_challenges").HandlerFunc(h.ListChallenges)
+	v1.Methods("GET").Path("/albums").Name("list_albums").HandlerFunc(h.ListAlbums)
+	v1.Methods("GET").Path("/album/{id}").Name("get_album").HandlerFunc(h.GetAlbum)
 	h.router = r
 	return r
 }
