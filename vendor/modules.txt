@@ -1,0 +1,108 @@
+# cloud.google.com/go/compute v1.23.3
+## explicit; go 1.19
+cloud.google.com/go/compute/internal
+# cloud.google.com/go/compute/metadata v0.2.3
+## explicit; go 1.19
+cloud.google.com/go/compute/metadata
+# github.com/Masterminds/squirrel v1.5.4
+## explicit; go 1.14
+github.com/Masterminds/squirrel
+# github.com/golang-migrate/migrate/v4 v4.17.1
+## explicit; go 1.18
+github.com/golang-migrate/migrate/v4
+github.com/golang-migrate/migrate/v4/database
+github.com/golang-migrate/migrate/v4/database/multistmt
+github.com/golang-migrate/migrate/v4/database/postgres
+github.com/golang-migrate/migrate/v4/internal/url
+github.com/golang-migrate/migrate/v4/source
+github.com/golang-migrate/migrate/v4/source/file
+github.com/golang-migrate/migrate/v4/source/iofs
+# github.com/google/go-cmp v0.6.0
+## explicit; go 1.13
+github.com/google/go-cmp/cmp
+github.com/google/go-cmp/cmp/internal/diff
+github.com/google/go-cmp/cmp/internal/flags
+github.com/google/go-cmp/cmp/internal/function
+github.com/google/go-cmp/cmp/internal/value
+# github.com/gorilla/mux v1.8.1
+## explicit; go 1.20
+github.com/gorilla/mux
+# github.com/hashicorp/errwrap v1.1.0
+## explicit
+github.com/hashicorp/errwrap
+# github.com/hashicorp/go-multierror v1.1.1
+## explicit; go 1.13
+github.com/hashicorp/go-multierror
+# github.com/jmoiron/sqlx v1.4.0
+## explicit; go 1.10
+github.com/jmoiron/sqlx
+github.com/jmoiron/sqlx/reflectx
+# github.com/kelseyhightower/envconfig v1.4.0
+## explicit
+github.com/kelseyhightower/envconfig
+# github.com/lann/builder v0.0.0-20180802200727-47ae307949d0
+## explicit
+github.com/lann/builder
+# github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0
+## explicit
+github.com/lann/ps
+# github.com/lib/pq v1.10.9
+## explicit; go 1.13
+github.com/lib/pq
+github.com/lib/pq/oid
+github.com/lib/pq/scram
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
+# github.com/ryanfowler/uuid v1.3.1
+## explicit; go 1.20
+github.com/ryanfowler/uuid
+# github.com/twitsprout/tools v1.0.4
+## explicit; go 1.15
+github.com/twitsprout/tools
+github.com/twitsprout/tools/buffer
+github.com/twitsprout/tools/clock
+github.com/twitsprout/tools/crypto
+github.com/twitsprout/tools/distlock
+github.com/twitsprout/tools/http
+github.com/twitsprout/tools/json
+github.com/twitsprout/tools/lifecycle
+github.com/twitsprout/tools/mock
+github.com/twitsprout/tools/postgres
+github.com/twitsprout/tools/queue
+github.com/twitsprout/tools/requestid
+github.com/twitsprout/tools/runtime
+github.com/twitsprout/tools/sync/semaphore
+github.com/twitsprout/tools/zap
+# go.opentelemetry.io/otel v1.2.0
+## explicit; go 1.15
+go.opentelemetry.io/otel/attribute
+go.opentelemetry.io/otel/codes
+go.opentelemetry.io/otel/internal
+# go.opentelemetry.io/otel/trace v1.2.0
+## explicit; go 1.15
+go.opentelemetry.io/otel/trace
+# go.uber.org/atomic v1.7.0
+## explicit; go 1.13
+go.uber.org/atomic
+# go.uber.org/multierr v1.10.0
+## explicit; go 1.19
+go.uber.org/multierr
+# go.uber.org/zap v1.27.0
+## explicit; go 1.19
+go.uber.org/zap
+go.uber.org/zap/buffer
+go.uber.org/zap/internal
+go.uber.org/zap/internal/bufferpool
+go.uber.org/zap/internal/color
+go.uber.org/zap/internal/exit
+go.uber.org/zap/internal/pool
+go.uber.org/zap/internal/stacktrace
+go.uber.org/zap/zapcore
+# golang.org/x/sync v0.5.0
+## explicit; go 1.18
+golang.org/x/sync/semaphore
+golang.org/x/sync/singleflight
+# gopkg.in/guregu/null.v3 v3.5.0
+## explicit
+gopkg.in/guregu/null.v3
