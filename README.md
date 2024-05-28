@@ -1,10 +1,8 @@
 # GOLAND-DEMO
 
-# This project is created to start write and get familier with GO language.
-
-# This project files are managed with one of best practices of folder structure.
-
-# Also coding are kept similar as per the other GO repo code writing practices.
+This project is created to start write and get familier with GO language.
+This project files are managed with one of best practices of folder structure.
+Also coding are kept similar as per the other GO repo code writing practices.
 
 ## What does this service do?
 
