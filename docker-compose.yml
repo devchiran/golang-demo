@@ -3,7 +3,7 @@ services:
   db:
     image: postgis/postgis:14-3.3
     environment:
-      POSTGRES_DB: 'golang_demo_test'
+      POSTGRES_DB: 'catelog'
       POSTGRES_HOST_AUTH_METHOD: 'trust'
     volumes:
       - .:/app
