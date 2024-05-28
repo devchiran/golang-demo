@@ -12,4 +12,5 @@ type Handler struct {
 	router     *mux.Router
 	Logger     tools.Logger
 	AlbumStore internal.AlbumStore
+	AppName    string
 }

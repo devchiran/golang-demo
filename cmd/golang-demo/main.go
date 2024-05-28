@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"golang-demo/internal/http"
 	"golang-demo/internal/postgres"
 	"log"
@@ -27,6 +28,7 @@ type variables struct {
 	PostgresUser string `required:"true" envconfig:"postgres_user"`
 	PostgresPass string `required:"true" envconfig:"postgres_pass"`
 	LogLevel     string `required:"false" envconfig:"log_level"`
+	AppName      string `required:"true" envconfig:"app_name"`
 }
 
 var v variables
@@ -41,6 +43,7 @@ func init() {
 	}
 
 	envconfig.MustProcess("golang-demo", &v)
+	fmt.Println("Env variables :", v)
 	if v.LogLevel == "" {
 		v.LogLevel = "info"
 	}
@@ -66,6 +69,7 @@ func main() {
 		Logger:     logger,
 		Version:    version,
 		AlbumStore: pg,
+		AppName:    v.AppName,
 	}
 	server := httputils.NewServer(v.Addr, h.Handler())
 	lc.StartServer(server)

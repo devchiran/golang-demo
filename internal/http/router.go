@@ -24,7 +24,7 @@ func (h *Handler) Handler() http.Handler {
 	r.MethodNotAllowedHandler = httputils.MethodNotAllowedHandler(h.Logger)
 	r.NotFoundHandler = httputils.NotFoundHandler(h.Logger)
 
-	versionHandler := httputils.VersionHandler("story-challenges", h.Version, h.Logger)
+	versionHandler := httputils.VersionHandler(h.AppName, h.Version, h.Logger)
 	r.Methods("GET").Path("/").Name("root").Handler(versionHandler)
 	r.Methods("GET").Path("/version").Name("version").Handler(versionHandler)
 
